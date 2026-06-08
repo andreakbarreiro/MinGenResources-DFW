@@ -8,4 +8,7 @@ It contains the following subfolders:
 | Block | Shapefiles for Dallas County Census blocks |
 | Food_access | Shapefiles for Zip codes in Dallas County |
 | Zip | Shapefiles for Dallas County zip codes
-| ---------------- | -------------------- |
+
+To obtain these: download from https://smu.app.box.com/folder/388313600446
+(will also be shared with you once I have email addresses)
+
