@@ -9,6 +9,6 @@ It contains the following subfolders:
 | Food_access | Shapefiles for grocery stores in Dallas County (Thanks to B. Minsker's research group) |
 | Zip | Shapefiles for Dallas County zip codes
 
-To obtain these: download from https://smu.app.box.com/folder/388313600446
-(will also be shared with you once I have email addresses)
+To obtain these: download the contents of https://smu.app.box.com/folder/388313600446
+into the directory 'Data' (will also be shared with you once I have email addresses)
 
