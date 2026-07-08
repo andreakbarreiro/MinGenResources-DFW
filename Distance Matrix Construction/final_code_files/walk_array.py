@@ -25,53 +25,38 @@ print('packages loaded')
 
 # In[2]:
 
-#assigning and printing task id
-
-
-# loading in files
-#replace the file path below with the file path for the data we want to run
-#this should be correct to access the parks centroids
-
-## full parks data code
-# sites = gpd.read_file("../Parks/centroids.shp")
-# print("Parks columns:", sites.columns)
-# print('data loaded')
-
-#running on the subset of the parks data rn
-sites = gpd.read_file("../../Parks/centroids.shp")
-# random.seed(42)
-# sites = sites_big.sample(100)
-# sites.reset_index(inplace = True)
-print("Parks colums:", sites.columns)
-print('data loaded yay')
-
-
 # getting job id and printing
 job_id = os.environ.get("SLURM_ARRAY_JOB_ID")
+print(f"Job ID: {job_id}")
 
-task_id = int(sys.argv[1])
+#get task id from .sh file
+task_id = int(sys.argv[2])
 print(f"Running task {task_id}")
+
+#take file name from .sh file
+file_name = str(sys.argv[1])
+print(f"File_name: {file_name}")
+
+#load in data
+sites = gpd.read_file(file_name)
+print('data loaded yay')
 
 
 #creating a data frame with only the row corresponding to the task_id
 sites_task = pd.DataFrame(sites.iloc[task_id]).transpose().reset_index()
 
-
+#turning the single row back into a gpd data frame
 sites_task = gpd.GeoDataFrame(sites_task, 
                             geometry = "geometry", 
                             crs = 'EPSG:4326'
                            ).iloc[0]
 print('created task site data')
 
-# time.sleep(task_id * 5)
-
 # In[3]:
-
 
 # define functions for geodesic
 
 # compute geodesic distance between two given points a and b
-#didn't change for array job
 def get_dist(a, b):
     origin = (a.y, a.x)
     #str(a.y)+','+str(a.x)
@@ -212,16 +197,16 @@ def comp_all_mats(city = "Dallas County",
              use_bbox = True,
              bbox = [-97.1, 32.5, -96.45, 33.1]):
 
-    # geodesic
-    walk_speed = 1.42
-    dists_geod = comp_geod_dist_col(sites_task)
-    time_geod = sec_from_mtr(dists_geod)
-    print("finished geodesic matrix")
+    # # geodesic
+    # #walk_speed = 1.42
+    # dists_geod = comp_geod_dist_col(sites_task)
+    # time_geod = sec_from_mtr(dists_geod)
+    # print("finished geodesic matrix")
 
-    file_path_geod = Path(f"../out_data_{job_id}/geod_cols")
-    file_path_geod.mkdir(parents=True, exist_ok=True)
+    # file_path_geod = Path(f"../../Schools/out_data_{job_id}/geod_cols")
+    # file_path_geod.mkdir(parents=True, exist_ok=True)
     
-    np.savez(f"{file_path_geod}/geod_col_{task_id}", walk_speed = walk_speed, dists_geod = dists_geod, time_geod = time_geod)
+    # np.savez(f"{file_path_geod}/geod_col_{task_id}", walk_speed = walk_speed, dists_geod = dists_geod, time_geod = time_geod)
 
 
     # walk
@@ -231,28 +216,32 @@ def comp_all_mats(city = "Dallas County",
     time_walk = sec_from_mtr(dists_walk)
     print("finished walk matrix")
 
-    file_path_walk = Path(f"../out_data_{job_id}/walk_cols")
-    file_path_walk.mkdir(parents=True, exist_ok=True)
+    file_path_as_list = file_name.split('/')[:-1]
+    file_title = file_name.split('/')[-1]
+    file_title = file_title.split('.')[0]
+    file_path = '/'.join(file_path_as_list)
+    file_path = Path(f"{file_path}/{file_title}/walk_cols")
+    file_path.mkdir(parents=True, exist_ok=True)
     
-    np.savez(f"{file_path_walk}/walk_col_{task_id}", walk_speed = walk_speed, dists_walk = dists_walk, time_walk = time_walk)
+    np.savez(f"{file_path}/walk_col_{task_id}", dists_walk = dists_walk, time_walk = time_walk)
 
-    try: 
-        print('started driving calculations')
-        # drive
-        nodes_drive, G_drive = load_map("../Dallas_bbox_drive.pkl")
-        print('drive: map + nodes loaded')
+    # try: 
+    #     print('started driving calculations')
+    #     # drive
+    #     nodes_drive, G_drive = load_map("../Dallas_bbox_drive.pkl")
+    #     print('drive: map + nodes loaded')
         
-        dists_drive, time_drive = comp_all_drive_col(nodes_drive, G_drive)
+    #     dists_drive, time_drive = comp_all_drive_col(nodes_drive, G_drive)
         
-        print("finished drive matrix")
+    #     print("finished drive matrix")
 
-    except Exception as E: 
-        print(f"Error: {E}")
+    # except Exception as E: 
+    #     print(f"Error: {E}")
 
-    file_path_drive = Path(f"../out_data_{job_id}/drive_cols")
-    file_path_drive.mkdir(parents=True, exist_ok=True)
+    # file_path_drive = Path(f"../../Schools/out_data_{job_id}/drive_cols")
+    # file_path_drive.mkdir(parents=True, exist_ok=True)
     
-    np.savez(f"{file_path_drive}/drive_col_{task_id}", dists_drive = dists_drive, time_drive = time_drive)
+    # np.savez(f"{file_path_drive}/drive_col_{task_id}", dists_drive = dists_drive, time_drive = time_drive)
 
 
 # In[8]:
