@@ -224,8 +224,11 @@ def parallel_pipeline(options):
 
 def parallel_rec_pipeline(setup):
     GlobalOptions, eps, connection = setup # if connection is None we ignore it
+    
     W = GlobalOptions['Matrix']
+    
     NV = GlobalOptions['N']
+
     allDraws = GlobalOptions['Draws']
     filename = GlobalOptions['monitor']
     maximal = GlobalOptions['EdgeList'] # maximal is (edgelist,weights)
