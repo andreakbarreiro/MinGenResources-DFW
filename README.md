@@ -7,6 +7,7 @@ Using persistent homology and minimal generators for resource allocation. Projec
 | Data | Link to data files needed for this project. (the actual files are stored on Box because they are too big) |
 | Distance Matrix | Code to compute pairwise distances between sets of points |
 | Minimal Scaffold | Code to read in a matrix of distances, compute a VR filtration, and track cycles through time. |
+| Parks | Code for the parks application of the project. |
 | src | Source code for MinScaffold (see citation below) 
 
 
