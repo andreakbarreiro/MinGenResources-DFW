@@ -11,6 +11,7 @@ How are greens spaces distributed in Dallas County? What demographic patterns mi
 3. notebooks/ - contains source code
 4. parks_data/ - contains original data used to build the dataset of parks in dallas county
 5. holes_no_parks.geojson - isochrone geometries. "no_parks" is in reference to the fact that we removed parks that were included in the "hole" area mistakenly as a result of how the isochrones are created.
+6. data_descriptions.md - descriptions and sources for the datasets
 
 For more information, data sources, and descriptions of the datasets please see the file titled "data_descriptions.md" in the data/ folder.
 
