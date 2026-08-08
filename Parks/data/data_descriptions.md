@@ -63,6 +63,7 @@ U.S. Census Bureau, “tl_2020_48_bg”, TIGER/Line Shapefiles, 2020, https://ww
 #### parks_data
 1. Counties.geojson - dataset of counties in Texas from REU python bootcamp (https://github.com/SMUREU/python_bootcamp/tree/main/data).
 2. dallas_county_parks.shp - dataset of only the existing parks within dallas county
-3. Parks_(2024).geojson - dataset of parks from North Central Texas Council of Governments (NCTCOG). NCTCOG copyright notice concering the data:
+3. Parks_(2024).geojson - dataset of parks from North Central Texas Council of Governments (NCTCOG). https://data-nctcoggis.hub.arcgis.com/datasets/997fd22166de42ee962cae1c8e2c3d4b_3/explore
+NCTCOG copyright notice concering the data:
 "Data, products, and services contained herein are copyright North Central Texas Council of Governments (NCTCOG). All reproduced or redistributed information should include the original NCTCOG copyright notice in an appropriate place. Any derivative work that makes use of NCTCOG data,
 products, or services should include an appropriately placed credit reference in substantial conformity with the following: “Data from the North Central Texas Council of Governments were used in the preparation of this product.” 
