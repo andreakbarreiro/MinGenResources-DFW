@@ -1,6 +1,6 @@
 ### Data Descriptions
 
-### holes_no_parks.geojson - isochrone geometries used in coverage_plots.ipynb
+#### holes_no_parks.geojson - isochrone geometries used in coverage_plots.ipynb
    - eps: the walking distances for which the isochrones are included in the dataset. This data contains holes/coverage for areas that are within a 10-, 15-, and 20-minute walk.
    - holes: geometries for the "holes" where there is no access to parks at the "eps" value
    - geometry: geometries for the "coverage" where there is no access to parks at the "eps" value
