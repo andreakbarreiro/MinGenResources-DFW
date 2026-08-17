@@ -54,7 +54,7 @@ The naming convention for the figures is as follows: The first figure contains o
 
 1. census_data_block_groups.ipynb - Cleaning demographic data and merging with corresponding block groups to create geo_age.geojson, geo_income.geojson, and geo_poverty.geojson in the data/census_data folder The process was first attempted with just census blocks but was unsuccessful as the census block data contained missing geometries.
 2. coverage_plots.ipynb - Used for producing the figures for demographic data with isochrone coverage
-3. intersection_centroids.ipynb - Having intersected the parks with a grid (see Process in ArcGIS Pro below), this computes the centroids for the new subdivided park areas
+3. intersection_centroids.ipynb - Having intersected the parks with a grid (see Methods in ArcGIS Pro 3.6.0 below), this computes the centroids for the new subdivided park areas
 4.  park_centroids.ipynb - This was the first attempt at representing the parks as individual points by simply calculating the centroid of each park to create the centroids.shp data in the data/original_centroids/ folder. This also includes the code to narrow the parks down to existing parks in Dallas County to create the dallas_county_parks.shp data in the data/parks_data/ folder.
 5. park_entrances.ipynb - an attempt to find the entrance points of parks
 
@@ -62,5 +62,5 @@ The naming convention for the figures is as follows: The first figure contains o
 
 three_minute_thesis_presentation.pdf - PDF of Three Minute Thesis Presentation
 
-### Process in ArcGIS Pro
+### Methods in ArcGIS Pro 3.6.0
 Recognizing in the park_centroids.ipynb that simply calculating the centroids of each park wasn't an accurate approach, we decided to intersect the parks with a grid, and then take the centroids of those intersected geometries to better represent the park area. Using the dallas_county_parks.shp data, we uploaded this to ArcGISPro and used the Geoprocessing Tool called "Create Fishnet". We selected "Extent of a Layer" for the grid extent and then set "Number of Rows" to 100 and "Number of Columns" to 100 for a 100 x 100 square grid. We then took the intersection between the dallas_county_parks and the grid using the Geoprocessing Tool called "Intersect". Using the output of this, we used the "Features to JSON" Geoprocessing Tool to obtain data/grid_intersection/grid_intersect.geojson which is used in intersection_centroids.ipynb.
