@@ -57,6 +57,8 @@ The naming convention for the figures is as follows: The first figure contains o
 3. intersection_centroids.ipynb - Having intersected the parks with a grid (see Methods in ArcGIS Pro 3.6.0 below), this computes the centroids for the new subdivided park areas
 4.  park_centroids.ipynb - This was the first attempt at representing the parks as individual points by simply calculating the centroid of each park to create the centroids.shp data in the data/original_centroids/ folder. This also includes the code to narrow the parks down to existing parks in Dallas County to create the dallas_county_parks.shp data in the data/parks_data/ folder.
 5. park_entrances.ipynb - an attempt to find the entrance points of parks
+6. parks_iso_greenbelt - Creating visualization of all of the isochrones around the Trinity River Greenbelt for Rae & Ananya's 3MT
+7. subtracting_parks_from_holes - Subtracts the park polygons from the MultiPolygon of "holes" (areas not within isochrones)
 
 #### presentation/
 
